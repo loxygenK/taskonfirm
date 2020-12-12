@@ -1,15 +1,15 @@
+export type CheckboxState = "checked" | "unchecked" | "cancelled";
+
 export class Checkbox {
 
   static readonly checkboxRegex = /^\s*-\s+\[\s*([\sX])\s*\]\s*(.+?)$/;
   static readonly cancelledBodyRegex = /^\s*~{2}(.*?)~{2}\s*$/
 
-  readonly checked: boolean;
-  readonly cancelled: boolean;
+  readonly state: CheckboxState;
   readonly body: string;
 
-  constructor(checked: boolean, cancelled: boolean, body: string) {
-    this.checked = checked;
-    this.cancelled = cancelled;
+  constructor(state: CheckboxState, body: string) {
+    this.state = state;
     this.body = body;
   }
 
@@ -29,7 +29,14 @@ export class Checkbox {
     // Extract body
     const body = (cancelMatch != null ? cancelMatch[1] : rawBody);
 
-    return new Checkbox(isChecked, isCancelled, body)
+    const state: CheckboxState = (
+      isCancelled
+        ? "cancelled"
+        : (isChecked ? "checked" : "unchecked")
+    );
+
+    // Always "checked" is false if the checkbox is cancelled.
+    return new Checkbox(state, body);
   }
 
 }
