@@ -3,4 +3,4 @@ description: "Fails when any check-box in the pull request's body is not checked
 
 runs:
   using: 'node12'
-  main: 'index.ts'
+  main: 'dist/index.js'
