@@ -19,6 +19,7 @@
     "typescript": "^4.1.3"
   },
   "scripts": {
+    "test": "jest",
     "lint": "yarn lint:eslint && yarn lint:prettier",
     "lint:eslint": "eslint src/**/*.ts",
     "lint:prettier": "prettier -c src/**/*.ts",
