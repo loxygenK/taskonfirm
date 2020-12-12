@@ -5769,7 +5769,19 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 352:
+/***/ 393:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var main_1 = __webpack_require__(697);
+main_1.main();
+
+
+/***/ }),
+
+/***/ 697:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -5794,6 +5806,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.main = void 0;
 var Core = __importStar(__webpack_require__(661));
 var Github = __importStar(__webpack_require__(33));
 function main() {
@@ -5806,7 +5819,7 @@ function main() {
     console.log("--- Pull request body ---");
     console.log(body);
 }
-main();
+exports.main = main;
 
 
 /***/ }),
@@ -5961,6 +5974,6 @@ module.exports = require("zlib");;
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(352);
+/******/ 	return __webpack_require__(393);
 /******/ })()
 ;

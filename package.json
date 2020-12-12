@@ -13,7 +13,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "if git diff --name-only --staged | grep index.ts; then ncc build index.ts --license licenses.txt && git add dist/; else echo 'unstaged.'; fi"
+      "pre-commit": "if git diff --name-only --staged | grep src/index.ts; then ncc build src/index.ts --license licenses.txt && git add dist/; else echo 'unstaged.'; fi"
     }
   }
 }
