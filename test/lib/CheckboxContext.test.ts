@@ -1,10 +1,10 @@
-import {Checkbox, CheckboxState} from "../../src/lib/Checkbox";
-import {CheckboxContext} from "../../src/lib/CheckboxContext";
+import { Checkbox, CheckboxState } from "../../src/lib/Checkbox";
+import { CheckboxContext } from "../../src/lib/CheckboxContext";
 
 function generateRepeatedCase(state: CheckboxState, times: number): Checkbox[] {
-  let generated: Checkbox[] = []
-  for(let i = 0;i<times;i++) {
-    generated.push(new Checkbox(state, state + " checkbox"))
+  const generated: Checkbox[] = [];
+  for (let i = 0; i < times; i++) {
+    generated.push(new Checkbox(state, state + " checkbox"));
   }
   return generated;
 }
@@ -13,7 +13,7 @@ test("Test the counting is working well", () => {
   const hasAllState: CheckboxContext = new CheckboxContext([
     ...generateRepeatedCase("checked", 3),
     ...generateRepeatedCase("unchecked", 4),
-    ...generateRepeatedCase("cancelled", 5)
+    ...generateRepeatedCase("cancelled", 5),
   ]);
 
   const onlyChecked: CheckboxContext = new CheckboxContext(
@@ -43,5 +43,4 @@ test("Test the counting is working well", () => {
   expect(onlyCancelled.checked).toBe(0);
   expect(onlyCancelled.unchecked).toBe(0);
   expect(onlyCancelled.cancelled).toBe(3);
-
 });

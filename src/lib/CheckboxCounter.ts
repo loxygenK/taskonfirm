@@ -1,8 +1,10 @@
 import { Checkbox } from "./Checkbox";
 import { CheckboxContext } from "./CheckboxContext";
 
-export function countCheckbox(body: string | undefined): CheckboxContext | undefined {
-  if(body == null) {
+export function countCheckbox(
+  body: string | undefined
+): CheckboxContext | undefined {
+  if (body == null) {
     return undefined;
   }
 

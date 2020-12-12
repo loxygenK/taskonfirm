@@ -1,18 +1,20 @@
-import {countCheckbox} from "../../src/lib/CheckboxCounter";
+import { countCheckbox } from "../../src/lib/CheckboxCounter";
 
 test("Check the parsing from the multiline is working well", () => {
   const singleLine = "- [ ] Test";
-  const multiline = "" +
-    "- [ ] Not completed task here\n" + 
-    "- [ ] another not completed task\n" + 
-    "- [ ] this too\n" + 
-    "- [X] oh yes this was finished\n" + 
-    "- [X] yes this too\n" + 
-    "- [ ] ~~ this was cancelled ~~\n" + 
+  const multiline =
+    "" +
+    "- [ ] Not completed task here\n" +
+    "- [ ] another not completed task\n" +
+    "- [ ] this too\n" +
+    "- [X] oh yes this was finished\n" +
+    "- [X] yes this too\n" +
+    "- [ ] ~~ this was cancelled ~~\n" +
     "- [X] ~~ this was cancelled after I finished the work :< ~~\n";
 
-  const document = "" +
-    "# Motivation\n" + 
+  const document =
+    "" +
+    "# Motivation\n" +
     "I want to eat some banana.\n" +
     "\n" +
     "# Tasks\n" +
@@ -39,5 +41,4 @@ test("Check the parsing from the multiline is working well", () => {
   expect(parsedDocument?.checked).toBe(4);
   expect(parsedDocument?.unchecked).toBe(1);
   expect(parsedDocument?.cancelled).toBe(1);
-
-})
+});

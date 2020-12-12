@@ -1,4 +1,4 @@
-import {Checkbox, ParseError} from "../../src/lib/Checkbox";
+import { Checkbox } from "../../src/lib/Checkbox";
 
 describe("Test that the parsing goes well", () => {
   test("check isParsableAsCheckbox working well", () => {
@@ -21,9 +21,13 @@ describe("Test that the parsing goes well", () => {
     const uncheckedCase = Checkbox.parseLine("- [ ] this is unchecked");
     const checkedCase = Checkbox.parseLine("- [X] this is checked");
     const cancelledCase = Checkbox.parseLine("- [ ] ~~this is cancelled~~");
-    const cancelledAndCheckedCase = Checkbox.parseLine("- [X] ~~this is checked, but cancelled~~");
+    const cancelledAndCheckedCase = Checkbox.parseLine(
+      "- [X] ~~this is checked, but cancelled~~"
+    );
 
-    expect(() => Checkbox.parseLine("- [] this cannot be parsed")).toThrow(Error);
+    expect(() => Checkbox.parseLine("- [] this cannot be parsed")).toThrow(
+      Error
+    );
 
     expect(uncheckedCase).toBeTruthy();
     expect(uncheckedCase.state).toBe("unchecked");
@@ -40,5 +44,5 @@ describe("Test that the parsing goes well", () => {
     expect(cancelledAndCheckedCase).toBeTruthy();
     expect(cancelledAndCheckedCase.state).toBe("cancelled");
     expect(cancelledAndCheckedCase.body).toBe("this is checked, but cancelled");
-  })
+  });
 });
