@@ -1,5 +1,11 @@
 export type CheckboxState = "checked" | "unchecked" | "cancelled";
 
+export class ParseError extends Error {
+  constructor(text: string) {
+    super(`Cannot parse the text: ${text}`);
+  }
+}
+
 export class Checkbox {
 
   static readonly checkboxRegex = /^\s*-\s+\[\s*([\sX])\s*\]\s*(.+?)$/;
@@ -13,10 +19,14 @@ export class Checkbox {
     this.body = body;
   }
 
-  static parseLine(line: string): Checkbox | undefined {
+  static isParsableAsCheckbox(line: string): boolean {
+    return line.match(this.checkboxRegex) != null;
+  }
+
+  static parseLine(line: string): Checkbox {
     // Verify this is a checkbox
     const checkboxMatch = line.match(this.checkboxRegex);
-    if(checkboxMatch  == null) return undefined;
+    if(checkboxMatch  == null) throw new ParseError(line);
 
     // extract elements from the text
     const isChecked = checkboxMatch[1] === "X";
