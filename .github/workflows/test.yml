@@ -1,6 +1,6 @@
 on:
   pull_request:
-    types: [ opened, synchronized ]
+    types: [ opened, synchronize ]
 
 jobs:
   taskonfirm:
