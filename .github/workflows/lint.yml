@@ -2,7 +2,7 @@ name: lint
 
 on:
   pull_request:
-    types: [ opened, synchonized ]
+    types: [ opened, synchronize ]
 
 jobs:
   eslint:
