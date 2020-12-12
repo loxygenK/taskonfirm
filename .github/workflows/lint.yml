@@ -58,6 +58,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-install
 
-      - name: Run eslint
+      - name: Run prettier
         run: yarn run lint:prettier
 
