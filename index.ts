@@ -8,7 +8,9 @@ function main() {
     return
   }
 
-  console.log(Github.context.payload.pull_request.body);
+  const body = Github.context.payload.pull_request.body;
+  console.log("--- Pull request body ---");
+  console.log(body);
 }
 
 main()
