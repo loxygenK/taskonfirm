@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 14.x
 
-      - uses: Install dependencies
+      - name: Install dependencies
         run: yarn install --frozen-install
 
       - name: Run eslint
@@ -55,7 +55,7 @@ jobs:
         with:
           node-version: 14.x
 
-      - uses: Install dependencies
+      - name: Install dependencies
         run: yarn install --frozen-install
 
       - name: Run eslint
