@@ -23,11 +23,11 @@
   "scripts": {
     "test": "jest",
     "lint": "yarn lint:eslint && yarn lint:prettier",
-    "lint:eslint": "eslint src/**/*.ts",
-    "lint:prettier": "prettier -c src/**/*.ts",
+    "lint:eslint": "eslint {src,test}/**/*.ts",
+    "lint:prettier": "prettier -c {src,test}/**/*.ts",
     "fix": "yarn fix:prettier && yarn fix:eslint",
-    "fix:eslint": "eslint --fix src/**/*.ts",
-    "fix:prettier": "prettier -w src/**/*.ts"
+    "fix:eslint": "eslint --fix {src,test}/**/*.ts",
+    "fix:prettier": "prettier -w {src,test}/**/*.ts"
   },
   "husky": {
     "hooks": {
