@@ -5802,7 +5802,9 @@ function main() {
         Core.setFailed("You can use this action when only Pull-request!");
         return;
     }
-    console.log(Github.context.payload.pull_request.body);
+    var body = Github.context.payload.pull_request.body;
+    console.log("--- Pull request body ---");
+    console.log(body);
 }
 main();
 
