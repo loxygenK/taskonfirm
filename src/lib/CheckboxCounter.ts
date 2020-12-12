@@ -1,3 +1,4 @@
+import { Checkbox } from "./Checkbox";
 import { CheckboxContext } from "./CheckboxContext";
 
 export function countCheckbox(body: string | undefined): CheckboxContext | undefined {
@@ -5,5 +6,10 @@ export function countCheckbox(body: string | undefined): CheckboxContext | undef
     return undefined;
   }
 
-  // TODO: return something
+  const lines = body.split("\n");
+  const checkboxes = lines
+    .filter((line) => Checkbox.isParsableAsCheckbox(line))
+    .map((line) => Checkbox.parseLine(line));
+
+  return new CheckboxContext(checkboxes);
 }
