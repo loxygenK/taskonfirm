@@ -8,7 +8,7 @@ function main() {
     return
   }
 
-  console.log(Github.context.payload.pull_request.body);
+  console.log(Github.context.payload.pull_request.body)
 }
 
 main()
