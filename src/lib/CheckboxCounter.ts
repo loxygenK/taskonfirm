@@ -1,17 +1,9 @@
 import { CheckboxContext } from "./CheckboxContext";
 
-export function countCheckbox(body: string | undefined): CheckboxContext {
+export function countCheckbox(body: string | undefined): CheckboxContext | undefined {
   if(body == null) {
-    return {
-      checked: 0,
-      unchecked: 0,
-      ignored: 0
-    }
+    return undefined;
   }
 
-  return {
-    checked: 0,
-    unchecked: 0,
-    ignored: 0
-  };
+  // TODO: return something
 }
