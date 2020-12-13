@@ -5973,6 +5973,9 @@ function main() {
         return;
     }
     var body = Github.context.payload.pull_request.body;
+    Core.info("------------------");
+    Core.info(body !== null && body !== void 0 ? body : "-- no message --");
+    Core.info("------------------");
     var checkboxContext = CheckboxCounter_1.countCheckbox(body);
     if (checkboxContext == null) {
         Core.info("No checkbox is found, nothing to care!");

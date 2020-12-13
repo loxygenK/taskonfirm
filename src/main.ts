@@ -10,6 +10,11 @@ export function main(): void {
   }
 
   const body = Github.context.payload.pull_request.body;
+
+  Core.info("------------------");
+  Core.info(body ?? "-- no message --");
+  Core.info("------------------");
+
   const checkboxContext = countCheckbox(body);
 
   if(checkboxContext == null) {
