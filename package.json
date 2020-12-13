@@ -1,6 +1,6 @@
 {
   "name": "taskonfirm",
-  "description": "Send a request-change when any checkbox in the body of PR isn't checked.",
+  "description": "Fails when any check-box in the pull request's body is not checked.",
   "version": "1.0.0",
   "main": "index.ts",
   "license": "MIT",
