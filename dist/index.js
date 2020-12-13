@@ -5884,7 +5884,7 @@ var Checkbox = /** @class */ (function () {
         // Always "checked" is false if the checkbox is cancelled.
         return new Checkbox(state, body);
     };
-    Checkbox.checkboxRegex = /^\s*-\s+\[\s*([\sX])\s*\]\s*(.+?)\n?$/m;
+    Checkbox.checkboxRegex = /^\s*-\s+\[\s*([\sxX])\s*\]\s*(.+?)\n?$/m;
     Checkbox.cancelledBodyRegex = /^\s*~{2}(.*?)~{2}\s*$/;
     return Checkbox;
 }());
