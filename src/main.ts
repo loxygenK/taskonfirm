@@ -17,7 +17,7 @@ export function main(): void {
     return
   }
 
-  Core.debug(
+  Core.info(
     `  Checked: ${checkboxContext.checked} checkbox(es)\n` +
     `UnChecked: ${checkboxContext.unchecked} checkbox(es)\n` +
     `Cancelled: ${checkboxContext.cancelled} checkbox(es)\n`

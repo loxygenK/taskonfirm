@@ -5978,7 +5978,7 @@ function main() {
         Core.info("No checkbox is found, nothing to care!");
         return;
     }
-    Core.debug("  Checked: " + checkboxContext.checked + " checkbox(es)\n" +
+    Core.info("  Checked: " + checkboxContext.checked + " checkbox(es)\n" +
         ("UnChecked: " + checkboxContext.unchecked + " checkbox(es)\n") +
         ("Cancelled: " + checkboxContext.cancelled + " checkbox(es)\n"));
     if (checkboxContext.unchecked > 0) {
