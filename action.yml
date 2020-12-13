@@ -1,7 +1,9 @@
 name: "Taskonfirm"
 description: "Fails when any check-box in the pull request's body is not checked."
-icon: check-square
-color: red
+
+branding:
+  icon: check-square
+  color: red
 
 runs:
   using: 'node12'
