@@ -11,7 +11,7 @@ export function countCheckbox(
   const lines = body.split("\n");
   const checkboxes = lines
     .filter((line) => Checkbox.isParsableAsCheckbox(line))
-    .map((line) => Checkbox.parseLine(line));
+    .map((line) => Checkbox.parseLine(line.trim()));
 
   lines.forEach((line) => {
     if(Checkbox.isParsableAsCheckbox(line)) {

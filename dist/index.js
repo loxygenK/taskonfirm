@@ -5929,7 +5929,7 @@ function countCheckbox(body) {
     var lines = body.split("\n");
     var checkboxes = lines
         .filter(function (line) { return Checkbox_1.Checkbox.isParsableAsCheckbox(line); })
-        .map(function (line) { return Checkbox_1.Checkbox.parseLine(line); });
+        .map(function (line) { return Checkbox_1.Checkbox.parseLine(line.trim()); });
     lines.forEach(function (line) {
         if (Checkbox_1.Checkbox.isParsableAsCheckbox(line)) {
             var checkbox = Checkbox_1.Checkbox.parseLine(line);
