@@ -18,7 +18,7 @@ export function countCheckbox(
       const checkbox = Checkbox.parseLine(line);
       console.log(`${line}\n  ${checkbox.state} (${checkbox.body})`);
     } else {
-      console.log(`${line}\n  -- not parsable --)`);
+      console.log(`${line}\n  -- not parsable --`);
     }
   });
 

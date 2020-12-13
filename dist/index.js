@@ -5936,7 +5936,7 @@ function countCheckbox(body) {
             console.log(line + "\n  " + checkbox.state + " (" + checkbox.body + ")");
         }
         else {
-            console.log(line + "\n  -- not parsable --)");
+            console.log(line + "\n  -- not parsable --");
         }
     });
     return new CheckboxContext_1.CheckboxContext(checkboxes);
