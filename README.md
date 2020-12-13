@@ -5,12 +5,12 @@
 
 Fails when any check-box in the pull request's body is not checked. <br>
 
-## How taskonfirm checks the checkbox is checked or not
-Taskonfirm checks **the checkbox 
-
-## How to use
+## How this works
 Just fails when there are unchecked checkboxes.<br>
 Checkboxes which the label is surrounded by `~~` isn't be checked.
+
+## How to use
+`Use` this action in **`pull_request` event**.
 
 ```yaml
 name: Todo check
