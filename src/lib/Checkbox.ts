@@ -7,7 +7,7 @@ export class ParseError extends Error {
 }
 
 export class Checkbox {
-  static readonly checkboxRegex = /^\s*-\s+\[\s*([\sX])\s*\]\s*(.+?)\n?$/;
+  static readonly checkboxRegex = /^\s*-\s+\[\s*([\sX])\s*\]\s*(.+?)\n?$/m;
   static readonly cancelledBodyRegex = /^\s*~{2}(.*?)~{2}\s*$/;
 
   readonly state: CheckboxState;
