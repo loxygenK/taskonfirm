@@ -5869,7 +5869,7 @@ var Checkbox = /** @class */ (function () {
         if (checkboxMatch == null)
             throw new ParseError(line);
         // extract elements from the text
-        var isChecked = checkboxMatch[1] === "X";
+        var isChecked = checkboxMatch[1] !== " ";
         var rawBody = checkboxMatch[2];
         // Check this is cancelled or not
         var cancelMatch = rawBody.match(this.cancelledBodyRegex);

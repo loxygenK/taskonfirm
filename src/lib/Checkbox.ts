@@ -28,7 +28,7 @@ export class Checkbox {
     if (checkboxMatch == null) throw new ParseError(line);
 
     // extract elements from the text
-    const isChecked = checkboxMatch[1] === "X";
+    const isChecked = checkboxMatch[1] !== " ";
     const rawBody = checkboxMatch[2];
 
     // Check this is cancelled or not
