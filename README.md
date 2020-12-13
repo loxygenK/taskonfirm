@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: loxygenK/taskonfirm@v1
+      - uses: loxygenK/taskonfirm@v1.0.0
 ```
 
 ---
@@ -50,5 +50,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: loxygenK/taskonfirm@v1
+      - uses: loxygenK/taskonfirm@v1.0.0
 ```
