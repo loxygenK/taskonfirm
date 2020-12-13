@@ -5827,6 +5827,116 @@ main_1.main();
 
 /***/ }),
 
+/***/ 320:
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Checkbox = exports.ParseError = void 0;
+var ParseError = /** @class */ (function (_super) {
+    __extends(ParseError, _super);
+    function ParseError(text) {
+        return _super.call(this, "Cannot parse the text: " + text) || this;
+    }
+    return ParseError;
+}(Error));
+exports.ParseError = ParseError;
+var Checkbox = /** @class */ (function () {
+    function Checkbox(state, body) {
+        this.state = state;
+        this.body = body;
+    }
+    Checkbox.isParsableAsCheckbox = function (line) {
+        return line.match(this.checkboxRegex) != null;
+    };
+    Checkbox.parseLine = function (line) {
+        // Verify this is a checkbox
+        var checkboxMatch = line.match(this.checkboxRegex);
+        if (checkboxMatch == null)
+            throw new ParseError(line);
+        // extract elements from the text
+        var isChecked = (checkboxMatch[1] === "x") || (checkboxMatch[1] === "X");
+        var rawBody = checkboxMatch[2];
+        // Check this is cancelled or not
+        var cancelMatch = rawBody.match(this.cancelledBodyRegex);
+        var isCancelled = cancelMatch != null;
+        // Extract body
+        var body = cancelMatch != null ? cancelMatch[1] : rawBody;
+        var state = isCancelled
+            ? "cancelled"
+            : isChecked
+                ? "checked"
+                : "unchecked";
+        // Always "checked" is false if the checkbox is cancelled.
+        return new Checkbox(state, body);
+    };
+    Checkbox.checkboxRegex = /^\s*-\s+\[\s*([\sxX])\s*\]\s*(.+?)\n?$/m;
+    Checkbox.cancelledBodyRegex = /^\s*~{2}(.*?)~{2}\s*$/;
+    return Checkbox;
+}());
+exports.Checkbox = Checkbox;
+
+
+/***/ }),
+
+/***/ 642:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CheckboxContext = void 0;
+var CheckboxContext = /** @class */ (function () {
+    function CheckboxContext(checkboxes) {
+        this.checked = checkboxes.filter(function (box) { return box.state === "checked"; }).length;
+        this.unchecked = checkboxes.filter(function (box) { return box.state === "unchecked"; }).length;
+        this.cancelled = checkboxes.filter(function (box) { return box.state === "cancelled"; }).length;
+    }
+    return CheckboxContext;
+}());
+exports.CheckboxContext = CheckboxContext;
+
+
+/***/ }),
+
+/***/ 187:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.countCheckbox = void 0;
+var Checkbox_1 = __webpack_require__(320);
+var CheckboxContext_1 = __webpack_require__(642);
+function countCheckbox(body) {
+    if (body == null) {
+        return undefined;
+    }
+    var lines = body.split("\n");
+    var checkboxes = lines
+        .filter(function (line) { return Checkbox_1.Checkbox.isParsableAsCheckbox(line); })
+        .map(function (line) { return Checkbox_1.Checkbox.parseLine(line.trim()); });
+    return new CheckboxContext_1.CheckboxContext(checkboxes);
+}
+exports.countCheckbox = countCheckbox;
+
+
+/***/ }),
+
 /***/ 697:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -5855,6 +5965,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.main = void 0;
 var Core = __importStar(__webpack_require__(661));
 var Github = __importStar(__webpack_require__(33));
+var CheckboxCounter_1 = __webpack_require__(187);
 function main() {
     // Ensure that this action is running on the Pull Request
     if (Github.context.payload.pull_request == null) {
@@ -5862,8 +5973,22 @@ function main() {
         return;
     }
     var body = Github.context.payload.pull_request.body;
-    console.log("--- Pull request body ---");
-    console.log(body);
+    var checkboxContext = CheckboxCounter_1.countCheckbox(body);
+    if (checkboxContext == null) {
+        Core.info("No checkbox is found, nothing to care!");
+        return;
+    }
+    Core.info("  Checked: " + checkboxContext.checked + " checkbox(es)\n" +
+        ("UnChecked: " + checkboxContext.unchecked + " checkbox(es)\n") +
+        ("Cancelled: " + checkboxContext.cancelled + " checkbox(es)\n"));
+    if (checkboxContext.unchecked > 0) {
+        Core.setFailed("[!] " + checkboxContext.unchecked + " checkbox(s) is **NOT** checked!");
+        return;
+    }
+    if (checkboxContext.cancelled > 0) {
+        Core.info(checkboxContext.cancelled + " checkbox(es) is cancelled (strikethrought in the text)");
+    }
+    Core.info("✨ All checkboxes has been checked!");
 }
 exports.main = main;
 

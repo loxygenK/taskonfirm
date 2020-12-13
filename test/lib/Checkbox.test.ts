@@ -14,8 +14,22 @@ describe("Test that the parsing goes well", () => {
     expect(Checkbox.isParsableAsCheckbox("- [ ] hoge")).toBeTruthy();
     expect(Checkbox.isParsableAsCheckbox("- [  ] hoge")).toBeTruthy();
     expect(Checkbox.isParsableAsCheckbox("- [X] hoge")).toBeTruthy();
+    expect(Checkbox.isParsableAsCheckbox("- [x] hoge")).toBeTruthy();
 
+    expect(Checkbox.isParsableAsCheckbox("- [ ] hoge fuga")).toBeTruthy();
+    expect(Checkbox.isParsableAsCheckbox("- [  ] hoge fuga")).toBeTruthy();
+    expect(Checkbox.isParsableAsCheckbox("- [X] hoge fuga")).toBeTruthy();
+    expect(Checkbox.isParsableAsCheckbox("- [x] hoge fuga")).toBeTruthy();
+
+    expect(Checkbox.isParsableAsCheckbox("- [ ] hoge fuga\n")).toBeTruthy();
+    expect(Checkbox.isParsableAsCheckbox("- [  ] hoge fuga\n")).toBeTruthy();
+    expect(Checkbox.isParsableAsCheckbox("- [X] hoge fuga\n")).toBeTruthy();
+    expect(Checkbox.isParsableAsCheckbox("- [x] hoge fuga\n")).toBeTruthy();
+
+    expect(Checkbox.isParsableAsCheckbox("- [ ] ~~hoge~~")).toBeTruthy();
+    expect(Checkbox.isParsableAsCheckbox("- [  ] ~~hoge~~")).toBeTruthy();
     expect(Checkbox.isParsableAsCheckbox("- [X] ~~hoge~~")).toBeTruthy();
+    expect(Checkbox.isParsableAsCheckbox("- [x] ~~hoge~~")).toBeTruthy();
   });
   test("Check parsing works well", () => {
     const uncheckedCase = Checkbox.parseLine("- [ ] this is unchecked");

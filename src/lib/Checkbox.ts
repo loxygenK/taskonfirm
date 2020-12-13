@@ -7,7 +7,7 @@ export class ParseError extends Error {
 }
 
 export class Checkbox {
-  static readonly checkboxRegex = /^\s*-\s+\[\s*([\sX])\s*\]\s*(.+?)$/;
+  static readonly checkboxRegex = /^\s*-\s+\[\s*([\sxX])\s*\]\s*(.+?)\n?$/m;
   static readonly cancelledBodyRegex = /^\s*~{2}(.*?)~{2}\s*$/;
 
   readonly state: CheckboxState;
@@ -28,7 +28,7 @@ export class Checkbox {
     if (checkboxMatch == null) throw new ParseError(line);
 
     // extract elements from the text
-    const isChecked = checkboxMatch[1] === "X";
+    const isChecked = (checkboxMatch[1] === "x") || (checkboxMatch[1] === "X");
     const rawBody = checkboxMatch[2];
 
     // Check this is cancelled or not
